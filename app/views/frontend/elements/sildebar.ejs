@@ -1,0 +1,40 @@
+<!-- <%= JSON.stringify(itemsRandom); %>  -->
+<%
+    let folderUpload = '/uploads/acticles/'
+    %>
+
+<div class="col-lg-4">
+    <div class="sidebars-area">
+        <div class="single-sidebar-widget most-popular-widget">
+            <h6 class="title">RANDOM ARTICLE</h6>
+            <% itemsRandom.forEach((item)=>{ %>  
+                <div class="single-list flex-row d-flex">
+                    <div class="thumb">
+                        <img style="width: 150px;" src="<%= folderUpload + item.thumb  %>" alt="<%= item.name  %>">
+                    </div>
+                    <div class="details">
+                        <a href="image-post.html">
+                            <h6><%= item.name  %></h6>
+                        </a>
+                        <ul class="meta">
+                            <li>
+                                <a href="#">
+                                    <span class="lnr lnr-calendar-full"></span><%= moment(item.createdAt).format(systemConfig.format_long_time)   %></a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="lnr lnr-bubble"></span>06</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+        <div class="single-sidebar-widget social-network-widget">
+            <h6 class="title">Social Networks</h6>
+            <ul  class="social-list">
+                <iframe style="width: 100%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.846965572986!2d107.4451189747711!3d11.198956351258575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317467006d600291%3A0x82a10da85b3d586d!2zxJDhuqdtIFNlbiBQaMO6IMSQaeG7gW4!5e0!3m2!1svi!2s!4v1690206310339!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </ul>
+        </div>
+    </div>
+</div>

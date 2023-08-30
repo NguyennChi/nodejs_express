@@ -1,0 +1,14 @@
+
+<% 
+
+groupSelectHelper = (id, groups, option= '') => { 
+    let xhtml = '';
+    groups.forEach((group)=>{
+        <!-- console.log(group.id); -->
+        let select =  (group.id == option) ? 'selected = "selected"' : ''
+        xhtml += `<option value="${group.id}" ${select}>${group.name}</option>`
+    })
+     return `<select name="${id}" class="form-control" >${xhtml} </select>`
+
+}
+%>

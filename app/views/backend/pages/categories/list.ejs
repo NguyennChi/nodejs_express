@@ -1,0 +1,112 @@
+<% include ./../../helper/status %>
+<% include ./../../helper/filter-status %>
+<% include ./../../helper/pagination %>
+<% include ./../../helper/action %>
+<% include ./../../helper/sort-by %>
+<% include ./../../helper/sort %>
+<%= JSON.stringify(menusItems); %>
+<%- locals.flash %>
+
+<%
+    const collection = 'categories'
+    let linkPrefix =  systemConfig.prefixAdmin + "/" + collection + "/"
+ %>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Search & Filter
+                <a href="<%= linkPrefix %>">
+                <span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
+                </a>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="status-list col-sm-6 pl0">
+                        <%- filterStatusHelper(collection,statusFillter,params.keywork) %>
+                    </div>
+                    <div class="col-sm-6">
+                        <form action="<%= linkPrefix %>/status/<%= params.currentStatus %>" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="keywork" placeholder="Search for..." value="<%= params.keywork %>">
+                                <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit">Search</button>
+                                </span>
+                                <span class="input-group-btn">
+                                <button class="btn btn-success" type="button"><a href="<%= linkPrefix %>/status/<%= params.currentStatus %>">Clear</a></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                List Items
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <form role="form" class="form-inline zt-form" id="zt-form" action="" method="post">
+                     <%- actionHelper(collection) %>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" class="cbAll" />
+                                    </th>
+                                    <th>#</th>
+                                    <th class="text-center pointer">
+                                        <%- sortHelper(collection,'Name','name', params.sortFied, params.sortType) %>
+                                    </th>        
+                                    <th>Slug</th>
+                                    <th class="text-center pointer">
+                                        <%- sortHelper(collection,'Menu','menusItems.slug', params.sortFied, params.sortType) %>
+                                    </th>                   
+                                    <th class="text-center pointer">
+                                        <a href="#" class="title_col"> Status <i class="fa fa-fw fa-sort"></i></a>
+                                    </th>
+                                      
+                                    <!-- <th width="30%">Content</th> -->
+                                    <th class="text-center pointer">
+                                        <%- sortHelper(collection,'Ordering','ordering', params.sortFied, params.sortType) %>
+                                    </th>
+                                    <th>Created</th>
+                                    <th>Modify</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% items.forEach((item, index)=>{%>
+                                    <tr>
+                                        <td><input type="checkbox" name="cid" value="<%= item.id %>" /></td>
+                                        <td><%= index + 1 %></td>
+                                        <td><%= item.name %></td>
+                                        <td><%= item.slug %></td>
+                                        <td><%= menusItems[1].slug %></td>
+                                        <td><%- statusHelper(item.status, item.id, collection ) %></td>
+                                        <td><input type="number" value="<%= item.ordering %>" class="text-center ordering"></td>
+                                        <td><%- sortByHelper(item.created.user_name,item.createdAt) %></td>
+                                        <td><%- sortByHelper(item.modify.user_name,item.updatedAt) %></td>
+                                        <td>
+                                            <a href="<%= linkPrefix %>form/<%= item.id %>" type="button" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="<%= linkPrefix %>/delete/<%= item.id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                                        </td>
+                                    </tr>
+                                <%})%>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <%- paginationHelper(params.pagination,collection,params.currentStatus,params.keywork) %>
+    </div>
+</div>

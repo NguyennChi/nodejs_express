@@ -1,0 +1,52 @@
+<!-- <%= JSON.stringify(article); %>  -->
+<% include ./../../helper/showCategory %>
+<% include ./../../helper/formatDecription %>
+<%
+    let folderUpload = '/uploads/acticles/'
+    %>
+<div class="col-lg-8 post-list">
+    <!-- Start latest-post Area -->
+    <div class="latest-post-wrap">
+        <h4 class="cat-title"><%- showCategoryName(category,article[0].categoriesId).name %></h4>
+
+        <% article.forEach((item)=>{ %>    
+            <div class="single-latest-post row align-items-center">
+                <div class="col-lg-5 post-left">
+                    <div class="feature-img relative">
+                        <div class="overlay overlay-bg"></div>
+                        <img class="img-fluid" src="<%= folderUpload + item.thumb  %>" alt="<%= item.name %>">
+                    </div>
+                    
+                </div>
+                <div class="col-lg-7 post-right">
+                    <a href="image-post.html">
+                        <h4>"<%= item.name %></h4>
+                    </a>
+                    <ul class="meta">
+                        <li>
+                            <a href="#">
+                                <span class="lnr lnr-user"></span>Mark wiens</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="lnr lnr-calendar-full"></span><%= moment(item.createdAt).format(systemConfig.format_long_time)   %></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="lnr lnr-bubble"></span>06 Comments</a>
+                        </li>
+                    </ul>
+                    <p class="excert">
+                        <%- formatDecription(item.editorData)%>...
+                      
+                    </p>
+                </div>
+            </div>
+        <% }) %>
+        <div class="load-more">
+            <a href="#" class="primary-btn">Load More Posts</a>
+        </div>
+
+    </div>
+    <!-- End latest-post Area -->
+</div>

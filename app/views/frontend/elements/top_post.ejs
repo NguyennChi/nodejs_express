@@ -1,0 +1,79 @@
+<!-- <%= JSON.stringify(category); %> -->
+<% include ./../helper/showCategory %>
+
+
+<%
+    let data = items.slice(1,3)
+    let folderUpload = '/uploads/acticles/'
+
+    %>
+<section class="top-post-area pt-10">
+    <div class="container no-padding">
+        <div class="row small-gutters">
+            <div class="col-lg-8 top-post-left">
+                <div class="feature-image-thumb relative">
+                    <div class="overlay overlay-bg"></div>
+                    <img class="img-fluid" src="<%= folderUpload + items[0].thumb  %>" alt="<%= items[0].name  %>">
+                </div>
+                <div class="top-post-details">
+                    <ul class="tags">
+                        <li>
+                            <a href="#"> <%- showCategoryName(category,items[0].categoriesId).name %></a>
+                        </li>
+                    </ul>
+                    <a href="/post/<%= items[0].id %>">
+                        <h3><%= items[0].name  %></h3>
+                    </a>
+                    <ul class="meta">
+                        <li>
+                            <a href="#">
+                                <span class="lnr lnr-user"></span>Mark wiens</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="lnr lnr-calendar-full"></span><%= moment(items[0].createdAt).format(systemConfig.format_long_time)   %></a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="lnr lnr-bubble"></span>06 Comments</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 top-post-right">
+            <% for(let i=0; i< data.length; i++){ %>
+                <div class="single-top-post">
+                    <div class="feature-image-thumb relative">
+                        <div class="overlay overlay-bg"></div>
+                        <img class="img-fluid" src="<%= folderUpload + data[i].thumb  %>" alt="<%= data[i].name  %>">
+                    </div>
+                    <div class="top-post-details">
+                        <ul class="tags">
+                            <li>
+                                <a href="#"> <%- showCategoryName(category,data[i].categoriesId).name %></a>
+                            </li>
+                        </ul>
+                        <a href="/post/<%= data[i].id  %>">
+                            <h4><%= data[i].name  %></h4>
+                        </a>
+                        <ul class="meta">
+                            <li>
+                                <a href="#">
+                                    <span class="lnr lnr-user"></span>Mark wiens</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="lnr lnr-calendar-full"></span><%= moment(data[i].createdAt).format(systemConfig.format_long_time)   %></a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="lnr lnr-bubble"></span>06 Comments</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+           <% } %>            
+            </div>
+        </div>
+    </div>
+</section>

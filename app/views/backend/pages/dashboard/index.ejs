@@ -1,0 +1,29 @@
+<!-- <%= JSON.stringify(count); %> -->
+<%
+    let arrBox = [
+    {name: 'Item', icon: 'ion ion-bag', link:'items', background: 'bg-info'},
+    {name: 'Menu', icon: 'ion ion-bag', link:'menus', background: 'bg-success'},
+    {name: 'Acticle', icon: 'ion ion-bag', link:'acticles', background: 'bg-warning'},
+    {name: 'Category', icon: 'ion ion-bag', link:'categories', background: 'bg-primary'},
+    {name: 'Group', icon: 'ion ion-bag', link:'groups', background: 'bg-secondary'},
+    {name: 'Users', icon: 'ion ion-bag', link:'users', background: 'bg-danger'},
+    ]
+let xhtm = ''
+    arrBox.forEach((value,index)=>{
+        console.log(value);
+        xhtm +=  `<div class="col-lg-3 col-6">
+                    <div class="small-box ${value.background}">
+                        <div class="inner">
+                        <h3>${count[value.name]}</h3>
+                        <p>${value.name}</p>
+                    </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/${systemConfig.prefixAdmin}/${value.link}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>`
+    })
+
+%>
+<%- xhtm %>

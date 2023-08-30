@@ -1,0 +1,20 @@
+<% 
+    showUser = (userInfo) => {
+
+        let xhtmlUser = '';
+        let linkDashboard = systemConfig.prefixAdmin +`/dashboard`;
+        let linkLogout = systemConfig.prefixFrontend +`/auth/logout/`;
+        let linkLogin = systemConfig.prefixFrontend +`/auth/login/`;
+
+        if(Object.keys(userInfo).length > 0){
+            xhtmlUser = `<li><a href="${linkLogout}">Logout</a></li>`;
+            if(userInfo.userName === 'Nguyen Chi'){
+                xhtmlUser = `<li><a href="${linkDashboard}">Admin Control</a></li>`;
+            }
+        }else{
+            xhtmlUser = `<li><a href="${linkLogin}">Login</a></li>`;
+        }
+
+        return xhtmlUser;
+    }
+%>

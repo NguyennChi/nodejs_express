@@ -1,0 +1,12 @@
+<% 
+showCategoryName=(category, id)=>{
+
+    let result = category.find(x => x.id == id)
+
+    if(result !== undefined){
+        return {name: result.name, id: result.id}
+    } else {
+        return {name: "Lỗi hiển thị", id: "index"}
+    }
+
+}%>

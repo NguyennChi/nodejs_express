@@ -1,0 +1,1 @@
+ bất đồng bộ Foreach

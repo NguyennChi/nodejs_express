@@ -1,0 +1,8 @@
+<% 
+imageHelper=(folder, avatarName, alt, className='img-responsive img-avatar' )=> {
+    if(avatarName == null){
+    avatarName = 'no-avatar.png'
+    }
+    return `<img class="${className}" src="${folder + avatarName}" alt="${alt}">`
+    }
+%>

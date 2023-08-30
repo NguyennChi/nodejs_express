@@ -1,0 +1,16 @@
+
+<% 
+
+positionHelper = (position, id, collection) => { 
+    let link = systemConfig.prefixAdmin + "/" + collection + "/change-position/"+ id + "/" + position
+    let xhtml = '';
+        if(position === 'active'){
+            xhtml= '<span class="label label-success"> Top-post</span>'  
+        }else{
+            xhtml= '<span class="label label-warning"> Nomal</span>'  
+        } 
+    
+     return `<a href="/${link}">${xhtml}</a>`
+
+}
+%>

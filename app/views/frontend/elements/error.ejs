@@ -1,0 +1,9 @@
+
+<% if(showError){ %>
+    <%  showError.forEach((error)=>{ %>
+        <div class="alert alert-danger" role="alert">
+      <p><b><%= error.path.charAt(0).toUpperCase() + error.path.slice(1)%> : <%= error.msg%></b></p> 
+      </div>
+      <%  }) %>
+<%}%>
+

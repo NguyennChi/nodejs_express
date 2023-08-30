@@ -1,0 +1,14 @@
+
+<% 
+
+menuSelectHelper = (id, menus, option= '') => { 
+    let xhtml = '';
+    menus.forEach((menu)=>{
+        <!-- console.log(group.id); -->
+        let select =  (menu.id == option) ? 'selected = "selected"' : ''
+        xhtml += `<option value="${menu.id}" ${select}>${menu.slug}</option>`
+    })
+     return `<select name="${id}" class="form-control" >${xhtml} </select>`
+
+}
+%>

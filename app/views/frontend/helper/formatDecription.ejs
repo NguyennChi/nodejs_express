@@ -1,0 +1,4 @@
+<% 
+formatDecription=(content, maxLength = 150)=>{
+    return content.replace(/(<([^>]+)>)/igm,"").substring(0,maxLength)
+}%>
